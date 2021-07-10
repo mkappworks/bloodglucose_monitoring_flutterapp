@@ -11,8 +11,8 @@ class GlucoseController extends GetxController {
   Rx<GlucoseListStatus> _status = GlucoseListStatus.loading.obs;
   RxList<Glucose> _apiGlucoseList = <Glucose>[].obs;
 
-  RxList<Glucose> _startDate = <Glucose>[].obs;
-  RxList<Glucose> _endDate = <Glucose>[].obs;
+  RxList<DateTime> _filteredStartDate = <DateTime>[].obs;
+  RxList<DateTime> _filteredEndDate = <DateTime>[].obs;
 
   RxList<Glucose> _dateFilteredGlucoseList = <Glucose>[].obs;
 
@@ -39,27 +39,42 @@ class GlucoseController extends GetxController {
     if (_apiGlucoseList.isEmpty) {
       _status.value = GlucoseListStatus.empty;
     } else {
-      setStartEndDate(_apiGlucoseList);
+      _setApiStartEndDate(_apiGlucoseList);
       _status.value = GlucoseListStatus.loaded;
     }
 
     update();
   }
 
-  void setStartEndDate(List<Glucose> currentList) {
+  void _setApiStartEndDate(List<Glucose> currentList) {
     //get the start date of _glucoseList
-    _startDate
-        .assign(GlucoseUtilsHelper.shared.getGlucoseListStartDate(currentList));
+    setFilteredStartDate(GlucoseUtilsHelper.shared
+        .getGlucoseListStartDate(currentList)
+        .timestamp);
 
     //get the end date of _glucoseList
-    _endDate
-        .assign(GlucoseUtilsHelper.shared.getGlucoseListEndDate(currentList));
+    setFilteredEndDate(
+        GlucoseUtilsHelper.shared.getGlucoseListEndDate(currentList).timestamp);
 
-    setDateFilteredGlucoseList(
-        startDate: _startDate[0].timestamp, endDate: _endDate[0].timestamp);
+    _setDateFilteredGlucoseList(
+      startDate: _filteredStartDate[0],
+      endDate: _filteredEndDate[0],
+    );
   }
 
-  void setDateFilteredGlucoseList(
+  void setFilteredStartDate(DateTime startDate) {
+    _filteredStartDate.assign(startDate);
+
+    update();
+  }
+
+  void setFilteredEndDate(DateTime endDate) {
+    _filteredEndDate.assign(endDate);
+
+    update();
+  }
+
+  void _setDateFilteredGlucoseList(
       {required DateTime startDate, required DateTime endDate}) {
     _dateFilteredGlucoseList.assignAll(GlucoseUtilsHelper.shared
         .getDateFilteredGlucoseList(
@@ -67,13 +82,13 @@ class GlucoseController extends GetxController {
             startDate: startDate,
             endDate: endDate));
 
-    setGlucoseParameters(_dateFilteredGlucoseList);
+    _setGlucoseParameters(_dateFilteredGlucoseList);
 
     update();
   }
 
   //Function to calculate and set all max, min, average and median glucose value from _glucoseList
-  void setGlucoseParameters(List<Glucose> currentList) {
+  void _setGlucoseParameters(List<Glucose> currentList) {
     //get the maximum glucose value
     _maximumGlucoseValue
         .assign(GlucoseUtilsHelper.shared.getMaximumGlucoseValue(currentList));
@@ -104,11 +119,11 @@ class GlucoseController extends GetxController {
 
   //get the current status of the GlucoseController
   Rx<GlucoseListStatus> get getStatus => _status;
-  
+
   //get the startDate
-  RxList<Glucose> get getStartDate => _startDate;
+  RxList<DateTime> get getFilteredStartDate => _filteredStartDate;
   //get the endDate
-  RxList<Glucose> get getEndDate => _endDate;
+  RxList<DateTime> get getFilteredEndDate => _filteredEndDate;
 
   //get the date filtered _glucoseList
   RxList<Glucose> get getDateFilteredGlucoseList => _dateFilteredGlucoseList;
