@@ -31,7 +31,7 @@ class GlucoseLineChart extends StatelessWidget {
             // Bind all raw blood glucose data from list returned from _glucoseController.getGlucoseList()
             LineSeries<Glucose, dynamic>(
               dataSource: <Glucose>[
-                ..._glucoseController.getDateFilteredGlucoseList()
+                ..._glucoseController.getDateFilteredGlucoseList
               ],
               xValueMapper: (Glucose glucose, _) => glucose.timestamp,
               yValueMapper: (Glucose glucose, _) => glucose.value,
@@ -60,11 +60,12 @@ class GlucoseLineChart extends StatelessWidget {
               yValueMapper: (Glucose glucose, _) => glucose.value,
               // Renders the marker
               markerSettings: MarkerSettings(
-                  isVisible:
-                      _glucoseController.getIsMaximumGlucoseValueHover.value,
-                  color: Colors.red,
-                  borderColor: Colors.red,
-                  shape: DataMarkerType.triangle),
+                isVisible:
+                    _glucoseController.getIsMaximumGlucoseValueHover.value,
+                color: Colors.red,
+                borderColor: Colors.red,
+                shape: DataMarkerType.triangle,
+              ),
             )
           ],
         ),
