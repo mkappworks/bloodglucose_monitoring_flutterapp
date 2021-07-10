@@ -58,21 +58,33 @@ class GlucoseController extends GetxController {
   }
 
   void setFilteredStartDate(DateTime startDate) {
-    _filteredStartDate.assign(startDate);
+    //check whether the _filteredStartDate list is empty.
+    //if empty assign startDate (this only happens when the app is loading for the first time)
+    if (_filteredStartDate.length == 0) _filteredStartDate.assign(startDate);
 
-    if (_filteredStartDate.length != 0 && _filteredEndDate.length != 0) {
-      _setDateFilteredGlucoseList();
-    }
+    //if _filteredEndDate.length is not empty and startDate is less than the _filteredEndDate
+    if (_filteredEndDate.length != 0 &&
+        startDate.compareTo(_filteredEndDate[0]) <= 0)
+      _filteredStartDate.assign(startDate);
+
+    //if _filteredEndDate is not empty the _setDateFilteredGlucoseList fn is called
+    if (_filteredEndDate.length != 0) _setDateFilteredGlucoseList();
 
     update();
   }
 
   void setFilteredEndDate(DateTime endDate) {
-    _filteredEndDate.assign(endDate);
+    //check whether the _filteredEndDate list is empty.
+    //if empty assign endDate (this only happens when the app is loading for the first time)
+    if (_filteredEndDate.length == 0) _filteredEndDate.assign(endDate);
 
-    if (_filteredStartDate.length != 0 && _filteredEndDate.length != 0) {
-      _setDateFilteredGlucoseList();
-    }
+    //if _filteredStartDate.length is not empty and endDate is greater than the _filteredEndDate
+    if (_filteredStartDate.length != 0 &&
+        endDate.compareTo(_filteredStartDate[0]) >= 0)
+      _filteredEndDate.assign(endDate);
+
+    //if _filteredStartDate is not empty the _setDateFilteredGlucoseList fn is called
+    if (_filteredStartDate.length != 0) _setDateFilteredGlucoseList();
 
     update();
   }
