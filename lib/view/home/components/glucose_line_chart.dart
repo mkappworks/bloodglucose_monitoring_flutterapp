@@ -17,8 +17,8 @@ class GlucoseLineChart extends StatelessWidget {
           primaryXAxis: DateTimeCategoryAxis(
             title: AxisTitle(text: 'Time'),
             edgeLabelPlacement: EdgeLabelPlacement.shift,
-            // minimum: _glucoseController.getMinimumGlucose[0].timestamp,
-            // maximum: _glucoseController.getMaximumGlucose[0].timestamp,
+            minimum: _glucoseController.getStartDate[0].timestamp,
+            maximum: _glucoseController.getEndDate[0].timestamp,
           ),
           // Initialize Y axis
           primaryYAxis: NumericAxis(
@@ -30,7 +30,9 @@ class GlucoseLineChart extends StatelessWidget {
           series: <LineSeries<Glucose, dynamic>>[
             // Bind all raw blood glucose data from list returned from _glucoseController.getGlucoseList()
             LineSeries<Glucose, dynamic>(
-              dataSource: <Glucose>[..._glucoseController.getGlucoseList()],
+              dataSource: <Glucose>[
+                ..._glucoseController.getDateFilteredGlucoseList()
+              ],
               xValueMapper: (Glucose glucose, _) => glucose.timestamp,
               yValueMapper: (Glucose glucose, _) => glucose.value,
             ),
