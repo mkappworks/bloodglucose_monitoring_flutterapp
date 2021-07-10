@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 //App colour constants
-const kPrimaryColor = Color(0XFFFF6E40);
-const kSecondaryColor = Color(0xFFB5BFD0);
+const kPrimaryColor = Color(0xFF3A7EBF);
+const kAccentColor = Color(0xFF3ABFBE);
 
 const kPrimaryTextColor = Color(0xFF000000);
 const kSecondaryTextColor = Colors.white;
 const kPrimarySubtitleTextColor = Color(0xFF50505D);
 const kSecondarySubtitleTextColor = Color(0xFF6A727D);
 
-const kBackgroundColor = Color(0xFFEEDEAE5);
+const kBackgroundColor = Color(0xFFF8F8FF);
 
 //App themes
 const TextTheme kTextThemeDefault = TextTheme(
@@ -37,3 +37,10 @@ const TextTheme kTextThemeDefault = TextTheme(
 
 const double kMockupWidth = 428.0;
 const double kMockupHeight = 926.0;
+
+const kAppBarDecoration = LinearGradient(
+  begin: Alignment.bottomLeft,
+  end: Alignment.topRight, // 10% of the width, so there are ten blinds.
+  colors: <Color>[kPrimaryColor, kAccentColor], // red to yellow
+  tileMode: TileMode.clamp, // repeats the gradient over the canvas
+);
