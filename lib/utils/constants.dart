@@ -40,7 +40,15 @@ const double kMockupHeight = 926.0;
 
 const kAppBarDecoration = LinearGradient(
   begin: Alignment.bottomLeft,
-  end: Alignment.topRight, // 10% of the width, so there are ten blinds.
-  colors: <Color>[kPrimaryColor, kAccentColor], // red to yellow
-  tileMode: TileMode.clamp, // repeats the gradient over the canvas
+  end: Alignment.topRight,
+  colors: <Color>[kPrimaryColor, kAccentColor],
+  tileMode: TileMode.clamp,
+);
+
+final ButtonStyle kFlatButtonStyle = TextButton.styleFrom(
+  backgroundColor: kPrimaryColor.withOpacity(0.6),
+  minimumSize: Size(150, 50),
+  shape: RoundedRectangleBorder(
+    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+  ),
 );
