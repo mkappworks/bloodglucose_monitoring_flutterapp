@@ -57,4 +57,17 @@ class GlucoseUtilsHelper {
             ? elementA
             : elementB);
   }
+
+  //return List<Glucose> with timeStamp between startDate and endDate
+  List<Glucose> getDateFilteredGlucoseList({
+    required List<Glucose> apiGlucoseList,
+    required DateTime startDate,
+    required DateTime endDate,
+  }) {
+    return apiGlucoseList
+        .where((element) =>
+            element.timestamp.compareTo(endDate) <= 0 &&
+            element.timestamp.compareTo(startDate) >= 0)
+        .toList();
+  }
 }
