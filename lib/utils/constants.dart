@@ -10,6 +10,7 @@ const kPrimarySubtitleTextColor = Color(0xFF50505D);
 const kSecondarySubtitleTextColor = Color(0xFF6A727D);
 
 const kBackgroundColor = Color(0xFFF8F8FF);
+const kDatePickerColor = Color(0xFF8eaed6);
 
 //App themes
 const TextTheme kTextThemeDefault = TextTheme(

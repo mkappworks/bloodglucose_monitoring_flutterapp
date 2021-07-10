@@ -26,8 +26,8 @@ class CustomDatePicker extends StatelessWidget {
           currentTime: DateTime.now(),
           locale: LocaleType.en,
           theme: DatePickerTheme(
-            headerColor: Colors.blue.shade300,
-            backgroundColor: Colors.blue.shade300,
+            headerColor: kDatePickerColor,
+            backgroundColor: kDatePickerColor,
             itemStyle: TextStyle(
                 color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
             cancelStyle: TextStyle(
