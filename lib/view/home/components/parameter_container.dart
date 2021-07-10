@@ -13,44 +13,47 @@ class ParameterContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            ParameterGestureCard(
-              onLongPressFn: () =>
-                  _glucoseController.setIsMaximumGlucoseValueHover(),
-              onLongPressEndFn: (details) =>
-                  _glucoseController.setIsMaximumGlucoseValueHover(),
-              label:
-                  'Maximum : ${_glucoseController.getMaximumGlucoseValue[0].value}',
-            ),
-            ParameterGestureCard(
+    return Obx(
+      () => Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              ParameterGestureCard(
                 onLongPressFn: () =>
-                    _glucoseController.setIsMinimumGlucoseValueHover(),
+                    _glucoseController.setIsMaximumGlucoseValueHover(),
                 onLongPressEndFn: (details) =>
-                    _glucoseController.setIsMinimumGlucoseValueHover(),
+                    _glucoseController.setIsMaximumGlucoseValueHover(),
                 label:
-                    'Minimum : ${_glucoseController.getMinimumGlucoseValue[0].value}'),
-          ],
-        ),
-        addVerticalSpace(10.0),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            ParameterCard(
-              label:
-                  'Average : ${_glucoseController.getAverageGlucoseValue[0]}',
-            ),
-            ParameterCard(
-              label: 'Median : ${_glucoseController.getMedianGlucoseValue[0]}',
-            ),
-          ],
-        ),
-      ],
+                    'Maximum : ${_glucoseController.getMaximumGlucoseValue[0].value}',
+              ),
+              ParameterGestureCard(
+                  onLongPressFn: () =>
+                      _glucoseController.setIsMinimumGlucoseValueHover(),
+                  onLongPressEndFn: (details) =>
+                      _glucoseController.setIsMinimumGlucoseValueHover(),
+                  label:
+                      'Minimum : ${_glucoseController.getMinimumGlucoseValue[0].value}'),
+            ],
+          ),
+          addVerticalSpace(10.0),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              ParameterCard(
+                label:
+                    'Average : ${_glucoseController.getAverageGlucoseValue[0]}',
+              ),
+              ParameterCard(
+                label:
+                    'Median : ${_glucoseController.getMedianGlucoseValue[0]}',
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

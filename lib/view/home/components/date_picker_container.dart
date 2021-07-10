@@ -9,21 +9,24 @@ class DatePickerContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        CustomDatePicker(
-          label: 'Pick Start Date',
-          onConfirm: (date) => _glucoseController.setFilteredStartDate(date),
-          currentTime: _glucoseController.getFilteredStartDate()[0],
-        ),
-        CustomDatePicker(
-          label: 'Pick End Date',
-          onConfirm: (date) => _glucoseController.setFilteredEndDate(date),
-          currentTime: _glucoseController.getFilteredEndDate()[0],
-        ),
-      ],
-    );
+    return Obx(() => Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            CustomDatePicker(
+              label: 'Pick Start Date',
+              onConfirm: (date) =>
+                  _glucoseController.setFilteredStartDate(date),
+              currentTime: _glucoseController.getFilteredStartDate[0],
+            ),
+            CustomDatePicker(
+              label: 'Pick End Date',
+              onConfirm: (date) => _glucoseController.setFilteredEndDate(
+                  date.add(Duration(
+                      hours: 23, minutes: 59, seconds: 59, milliseconds: 999))),
+              currentTime: _glucoseController.getFilteredEndDate[0],
+            ),
+          ],
+        ));
   }
 }
