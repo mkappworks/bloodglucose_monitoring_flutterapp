@@ -34,7 +34,7 @@ class GlucoseController extends GetxController {
     if (_apiGlucoseList.isEmpty) {
       _status.value = GlucoseListStatus.empty;
     } else {
-      setGlucosseParameters();
+      setGlucoseParameters();
       _status.value = GlucoseListStatus.loaded;
     }
 
@@ -42,7 +42,7 @@ class GlucoseController extends GetxController {
   }
 
   //Function to calculate and set all max, min, average and median glucose value from _glucoseList
-  void setGlucosseParameters() {
+  void setGlucoseParameters() {
     //get the maximum glucose value
     _maximumGlucoseValue
         .assign(GlucoseUtilsHelper.shared.getMaximumGlucoseValue(_apiGlucoseList));
