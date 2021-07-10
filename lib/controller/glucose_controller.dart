@@ -1,7 +1,7 @@
-import 'package:bloodglucose_monitoring_flutterapp/controller/helper/glucose_utils_helper.dart';
 import 'package:get/get.dart';
 
 import 'package:bloodglucose_monitoring_flutterapp/controller/helper/glucose_service_helper.dart';
+import 'package:bloodglucose_monitoring_flutterapp/controller/helper/glucose_utils_helper.dart';
 
 import 'package:bloodglucose_monitoring_flutterapp/model/glucose.dart';
 
@@ -55,15 +55,14 @@ class GlucoseController extends GetxController {
     //get the end date of _glucoseList
     setFilteredEndDate(
         GlucoseUtilsHelper.shared.getGlucoseListEndDate(currentList).timestamp);
-
-    _setDateFilteredGlucoseList(
-      startDate: _filteredStartDate[0],
-      endDate: _filteredEndDate[0],
-    );
   }
 
   void setFilteredStartDate(DateTime startDate) {
     _filteredStartDate.assign(startDate);
+
+    if (_filteredStartDate.length != 0 && _filteredEndDate.length != 0) {
+      _setDateFilteredGlucoseList();
+    }
 
     update();
   }
@@ -71,17 +70,25 @@ class GlucoseController extends GetxController {
   void setFilteredEndDate(DateTime endDate) {
     _filteredEndDate.assign(endDate);
 
+    if (_filteredStartDate.length != 0 && _filteredEndDate.length != 0) {
+      _setDateFilteredGlucoseList();
+    }
+
     update();
   }
 
-  void _setDateFilteredGlucoseList(
-      {required DateTime startDate, required DateTime endDate}) {
-    _dateFilteredGlucoseList.assignAll(GlucoseUtilsHelper.shared
-        .getDateFilteredGlucoseList(
-            apiGlucoseList: _apiGlucoseList,
-            startDate: startDate,
-            endDate: endDate));
+  void _setDateFilteredGlucoseList() {
+    print('${_filteredStartDate[0]} ${_filteredEndDate[0]}');
 
+    _dateFilteredGlucoseList.assignAll(
+      GlucoseUtilsHelper.shared.getDateFilteredGlucoseList(
+        apiGlucoseList: _apiGlucoseList,
+        startDate: _filteredStartDate[0],
+        endDate: _filteredEndDate[0],
+      ),
+    );
+
+    print(_dateFilteredGlucoseList.length);
     _setGlucoseParameters(_dateFilteredGlucoseList);
 
     update();
@@ -105,16 +112,24 @@ class GlucoseController extends GetxController {
     _medianGlucoseValue.assign(
         GlucoseUtilsHelper.shared.calculateMedianGlucoseValue(currentList));
 
+    print(
+        '${_maximumGlucoseValue[0].value} ${_minimumGlucoseValue[0].value} ${_averageGlucoseValue} ${_medianGlucoseValue}');
+
     update();
   }
 
   //Function to set whether the Maximum Glucose Value is being long pressed
-  void setIsMaximumGlucoseValueHover() =>
-      _isMaximumGlucoseValueHover.value = !_isMaximumGlucoseValueHover.value;
+  void setIsMaximumGlucoseValueHover() {
+    _isMaximumGlucoseValueHover.value = !_isMaximumGlucoseValueHover.value;
+
+    update();
+  }
 
   //Function to set whether the Minimum Glucose Value is being long pressed
   void setIsMinimumGlucoseValueHover() {
     _isMinimumGlucoseValueHover.value = !_isMinimumGlucoseValueHover.value;
+
+    update();
   }
 
   //get the current status of the GlucoseController
