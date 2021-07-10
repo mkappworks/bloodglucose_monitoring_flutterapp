@@ -19,7 +19,10 @@ class ParameterCard extends StatelessWidget {
       child: Center(
         child: Text(
           label,
-          style: Theme.of(context).textTheme.headline4,
+          style: Theme.of(context)
+              .textTheme
+              .headline4
+              ?.copyWith(fontWeight: FontWeight.w500),
         ),
       ),
     );
