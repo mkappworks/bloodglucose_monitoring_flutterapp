@@ -9,7 +9,7 @@ enum GlucoseListStatus { loading, loaded, empty }
 
 class GlucoseController extends GetxController {
   Rx<GlucoseListStatus> _status = GlucoseListStatus.loading.obs;
-  RxList<Glucose> _glucoseList = <Glucose>[].obs;
+  RxList<Glucose> _apiGlucoseList = <Glucose>[].obs;
   RxList<Glucose> _minimumGlucoseValue = <Glucose>[].obs;
   RxList<Glucose> _maximumGlucoseValue = <Glucose>[].obs;
   RxList<double> _averageGlucoseValue = <double>[].obs;
@@ -28,10 +28,10 @@ class GlucoseController extends GetxController {
   Future<void> _setGlucoseList() async {
     _status.value = GlucoseListStatus.loading;
 
-    _glucoseList
+    _apiGlucoseList
         .assignAll(await GlucoseServiceHelper.shared.fetchGlucoseList());
 
-    if (_glucoseList.isEmpty) {
+    if (_apiGlucoseList.isEmpty) {
       _status.value = GlucoseListStatus.empty;
     } else {
       setGlucosseParameters();
@@ -45,27 +45,27 @@ class GlucoseController extends GetxController {
   void setGlucosseParameters() {
     //get the maximum glucose value
     _maximumGlucoseValue
-        .assign(GlucoseUtilsHelper.shared.getMaximumGlucoseValue(_glucoseList));
+        .assign(GlucoseUtilsHelper.shared.getMaximumGlucoseValue(_apiGlucoseList));
 
     //get the minimum glucose value
     _minimumGlucoseValue
-        .assign(GlucoseUtilsHelper.shared.getMinimumGlucoseValue(_glucoseList));
+        .assign(GlucoseUtilsHelper.shared.getMinimumGlucoseValue(_apiGlucoseList));
 
     // calculating the average glucose value
     _averageGlucoseValue.assign(
-        GlucoseUtilsHelper.shared.calculateAverageGlucoseValue(_glucoseList));
+        GlucoseUtilsHelper.shared.calculateAverageGlucoseValue(_apiGlucoseList));
 
     // calculating the median glucose value
     _medianGlucoseValue.assign(
-        GlucoseUtilsHelper.shared.calculateMedianGlucoseValue(_glucoseList));
+        GlucoseUtilsHelper.shared.calculateMedianGlucoseValue(_apiGlucoseList));
 
     //get the start date of _glucoseList
     _glucoseListStartDate.assign(
-        GlucoseUtilsHelper.shared.getGlucoseListStartDate(_glucoseList));
+        GlucoseUtilsHelper.shared.getGlucoseListStartDate(_apiGlucoseList));
 
     //get the end date of _glucoseList
     _glucoseListEndDate
-        .assign(GlucoseUtilsHelper.shared.getGlucoseListEndDate(_glucoseList));
+        .assign(GlucoseUtilsHelper.shared.getGlucoseListEndDate(_apiGlucoseList));
 
     update();
   }
@@ -82,7 +82,7 @@ class GlucoseController extends GetxController {
   //get the current status of the GlucoseController
   Rx<GlucoseListStatus> get getStatus => _status;
   //get the _glucoseList
-  RxList<Glucose> get getGlucoseList => _glucoseList;
+  RxList<Glucose> get getGlucoseList => _apiGlucoseList;
   //get the _minimumGlucoseValue
   RxList<Glucose> get getMinimumGlucoseValue => _minimumGlucoseValue;
   //get the _maximumGlucoseValue
