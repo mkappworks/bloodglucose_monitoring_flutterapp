@@ -3,13 +3,13 @@ import 'package:bloodglucose_monitoring_flutterapp/model/glucose.dart';
 class GlucoseUtilsHelper {
   static final shared = GlucoseUtilsHelper();
 
-  //returns the smallest element in _glucoseList with the smallest element.value
+  //returns the element in _glucoseList with the smallest element.value
   Glucose getMinimumGlucoseValue(List<Glucose> _glucoseList) {
     return _glucoseList.reduce((elementA, elementB) =>
         elementA.value < elementB.value ? elementA : elementB);
   }
 
-  //returns the largest element in _glucoseList with the smallest element.value
+  //returns the element in _glucoseList with the smallest element.value
   Glucose getMaximumGlucoseValue(List<Glucose> _glucoseList) {
     return _glucoseList.reduce((elementA, elementB) =>
         elementA.value > elementB.value ? elementA : elementB);
@@ -40,5 +40,21 @@ class GlucoseUtilsHelper {
         : ((_sortedList[_middle - 1] + _sortedList[_middle]) / 2.0);
 
     return _medianValue;
+  }
+
+  //returns the element in _glucoseList with the smallest element.timestamp
+  Glucose getGlucoseListStartDate(List<Glucose> _glucoseList) {
+    return _glucoseList.reduce((elementA, elementB) =>
+        elementA.timestamp.compareTo(elementB.timestamp) < 0
+            ? elementA
+            : elementB);
+  }
+
+  //return the element in _glucoseList with the largest element.timestamp
+  Glucose getGlucoseListEndDate(List<Glucose> _glucoseList) {
+    return _glucoseList.reduce((elementA, elementB) =>
+        elementA.timestamp.compareTo(elementB.timestamp) > 0
+            ? elementA
+            : elementB);
   }
 }

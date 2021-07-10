@@ -16,6 +16,8 @@ class GlucoseController extends GetxController {
   RxList<double> _medianGlucoseValue = <double>[].obs;
   RxBool _isMaximumGlucoseValueHover = false.obs;
   RxBool _isMinimumGlucoseValueHover = false.obs;
+  RxList<Glucose> _glucoseListStartDate = <Glucose>[].obs;
+  RxList<Glucose> _glucoseListEndDate = <Glucose>[].obs;
 
   Future<void> onInit() async {
     super.onInit();
@@ -41,13 +43,13 @@ class GlucoseController extends GetxController {
 
   //Function to calculate and set all max, min, average and median glucose value from _glucoseList
   void setGlucosseParameters() {
-    //calculating the maximum glucose value
-    _maximumGlucoseValue.assign(
-        GlucoseUtilsHelper.shared.getMaximumGlucoseValue(_glucoseList));
+    //get the maximum glucose value
+    _maximumGlucoseValue
+        .assign(GlucoseUtilsHelper.shared.getMaximumGlucoseValue(_glucoseList));
 
-    //calculating the minimum glucose value
-    _minimumGlucoseValue.assign(
-        GlucoseUtilsHelper.shared.getMinimumGlucoseValue(_glucoseList));
+    //get the minimum glucose value
+    _minimumGlucoseValue
+        .assign(GlucoseUtilsHelper.shared.getMinimumGlucoseValue(_glucoseList));
 
     // calculating the average glucose value
     _averageGlucoseValue.assign(
@@ -56,6 +58,14 @@ class GlucoseController extends GetxController {
     // calculating the median glucose value
     _medianGlucoseValue.assign(
         GlucoseUtilsHelper.shared.calculateMedianGlucoseValue(_glucoseList));
+
+    //get the start date of _glucoseList
+    _glucoseListStartDate.assign(
+        GlucoseUtilsHelper.shared.getGlucoseListStartDate(_glucoseList));
+
+    //get the end date of _glucoseList
+    _glucoseListEndDate
+        .assign(GlucoseUtilsHelper.shared.getGlucoseListEndDate(_glucoseList));
 
     update();
   }
