@@ -17,8 +17,8 @@ class GlucoseLineChart extends StatelessWidget {
           primaryXAxis: DateTimeCategoryAxis(
             title: AxisTitle(text: 'Time'),
             edgeLabelPlacement: EdgeLabelPlacement.shift,
-            minimum: _glucoseController.getStartDate[0].timestamp,
-            maximum: _glucoseController.getEndDate[0].timestamp,
+            minimum: _glucoseController.getFilteredStartDate[0],
+            maximum: _glucoseController.getFilteredEndDate[0],
           ),
           // Initialize Y axis
           primaryYAxis: NumericAxis(
