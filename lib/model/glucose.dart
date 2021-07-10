@@ -1,13 +1,5 @@
-import 'dart:convert';
-
-List<Glucose> glucoseFromJson(String str) =>
-    List<Glucose>.from(json.decode(str).map((x) => Glucose.fromJson(x)));
-
-String glucoseToJson(List<Glucose> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
-
 class Glucose {
-  final String value;
+  final double value;
   final DateTime timestamp;
   final String unit;
 
@@ -18,7 +10,7 @@ class Glucose {
   });
 
   factory Glucose.fromJson(Map<String, dynamic> json) => Glucose(
-        value: json["value"],
+        value: double.parse(json["value"]),
         timestamp: DateTime.parse(json["timestamp"]),
         unit: json["unit"],
       );
