@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: kPrimaryColor,
-        accentColor: kSecondaryColor,
+        accentColor: kAccentColor,
         textTheme: kTextThemeDefault,
         fontFamily: "Roboto",
       ),
