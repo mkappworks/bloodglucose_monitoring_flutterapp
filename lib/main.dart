@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
+import 'package:bloodglucose_monitoring_flutterapp/controller/glucose_controller.dart';
+
 import 'package:bloodglucose_monitoring_flutterapp/utils/constants.dart';
 import 'package:bloodglucose_monitoring_flutterapp/utils/routes.dart';
 
@@ -9,6 +11,7 @@ import 'package:bloodglucose_monitoring_flutterapp/view/home/home_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  Get.put(GlucoseController());
   // Lock the entire app orientation to Portrait mode
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) {
