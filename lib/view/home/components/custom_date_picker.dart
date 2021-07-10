@@ -6,11 +6,13 @@ import 'package:bloodglucose_monitoring_flutterapp/view/home/components/custom_t
 
 class CustomDatePicker extends StatelessWidget {
   final String label;
-  final Function onConfirm;
+  final Function(DateTime date) onConfirm;
+  final DateTime currentTime;
 
   const CustomDatePicker({
     required this.label,
     required this.onConfirm,
+    required this.currentTime,
   });
 
   @override
@@ -22,8 +24,8 @@ class CustomDatePicker extends StatelessWidget {
           showTitleActions: true,
           minTime: DateTime.now().subtract(Duration(days: 3650)),
           maxTime: DateTime.now(),
-          onConfirm: (date) => onConfirm,
-          currentTime: DateTime.now(),
+          onConfirm: onConfirm,
+          currentTime: currentTime,
           locale: LocaleType.en,
           theme: DatePickerTheme(
             headerColor: kDatePickerColor,
