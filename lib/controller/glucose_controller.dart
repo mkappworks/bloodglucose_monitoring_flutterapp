@@ -78,8 +78,6 @@ class GlucoseController extends GetxController {
   }
 
   void _setDateFilteredGlucoseList() {
-    print('${_filteredStartDate[0]} ${_filteredEndDate[0]}');
-
     _dateFilteredGlucoseList.assignAll(
       GlucoseUtilsHelper.shared.getDateFilteredGlucoseList(
         apiGlucoseList: _apiGlucoseList,
@@ -88,7 +86,6 @@ class GlucoseController extends GetxController {
       ),
     );
 
-    print(_dateFilteredGlucoseList.length);
     _setGlucoseParameters(_dateFilteredGlucoseList);
 
     update();
@@ -111,9 +108,6 @@ class GlucoseController extends GetxController {
     // calculating the median glucose value
     _medianGlucoseValue.assign(
         GlucoseUtilsHelper.shared.calculateMedianGlucoseValue(currentList));
-
-    print(
-        '${_maximumGlucoseValue[0].value} ${_minimumGlucoseValue[0].value} ${_averageGlucoseValue} ${_medianGlucoseValue}');
 
     update();
   }
