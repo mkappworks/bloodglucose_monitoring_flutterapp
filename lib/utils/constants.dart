@@ -45,11 +45,3 @@ const kAppBarDecoration = LinearGradient(
   colors: <Color>[kPrimaryColor, kAccentColor],
   tileMode: TileMode.clamp,
 );
-
-final ButtonStyle kFlatButtonStyle = TextButton.styleFrom(
-  backgroundColor: kPrimaryColor.withOpacity(0.6),
-  minimumSize: Size(150, 50),
-  shape: RoundedRectangleBorder(
-    borderRadius: BorderRadius.all(Radius.circular(8.0)),
-  ),
-);

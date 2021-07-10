@@ -21,8 +21,9 @@ class GlucoseContainer extends StatelessWidget {
         addVerticalSpace(30.0),
         CustomTextIconButton(
           onPressed: () => {},
-          icon: Icons.data_usage_rounded,
+          icon: Icons.upload_file_rounded,
           label: 'Export Data',
+          scale: 1.50,
         ),
       ],
     );
