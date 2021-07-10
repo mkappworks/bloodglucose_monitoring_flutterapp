@@ -39,15 +39,15 @@ class GlucoseController extends GetxController {
     update();
   }
 
- //Function to calculate and set all max, min, average and median glucose value from _glucoseList
+  //Function to calculate and set all max, min, average and median glucose value from _glucoseList
   void setGlucosseParameters() {
     //calculating the maximum glucose value
     _maximumGlucoseValue.assign(
-        GlucoseUtilsHelper.shared.calculateMaximumGlucoseValue(_glucoseList));
+        GlucoseUtilsHelper.shared.getMaximumGlucoseValue(_glucoseList));
 
     //calculating the minimum glucose value
     _minimumGlucoseValue.assign(
-        GlucoseUtilsHelper.shared.calculateMinimumGlucoseValue(_glucoseList));
+        GlucoseUtilsHelper.shared.getMinimumGlucoseValue(_glucoseList));
 
     // calculating the average glucose value
     _averageGlucoseValue.assign(

@@ -4,13 +4,13 @@ class GlucoseUtilsHelper {
   static final shared = GlucoseUtilsHelper();
 
   //returns the smallest element in _glucoseList with the smallest element.value
-  Glucose calculateMinimumGlucoseValue(List<Glucose> _glucoseList) {
+  Glucose getMinimumGlucoseValue(List<Glucose> _glucoseList) {
     return _glucoseList.reduce((elementA, elementB) =>
         elementA.value < elementB.value ? elementA : elementB);
   }
 
   //returns the largest element in _glucoseList with the smallest element.value
-  Glucose calculateMaximumGlucoseValue(List<Glucose> _glucoseList) {
+  Glucose getMaximumGlucoseValue(List<Glucose> _glucoseList) {
     return _glucoseList.reduce((elementA, elementB) =>
         elementA.value > elementB.value ? elementA : elementB);
   }
