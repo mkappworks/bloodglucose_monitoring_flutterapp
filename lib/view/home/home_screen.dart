@@ -11,6 +11,13 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kBackgroundColor,
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('Blood Glucose Monitoring App'),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(gradient: kAppBarDecoration),
+        ),
+      ),
       body: HomeBody(),
     );
   }
