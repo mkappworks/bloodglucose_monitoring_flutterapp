@@ -13,6 +13,8 @@ class GlucoseContainer extends StatelessWidget {
     return Column(
       children: [
         addVerticalSpace(10.0),
+        DatePickerContainer(),
+        addVerticalSpace(10.0),
         GlucoseLineChart(),
         addVerticalSpace(10.0),
         ParameterContainer(),
