@@ -146,11 +146,11 @@ class GlucoseController extends GetxController {
     update();
   }
 
-  void postGlucoseData() =>
-      GlucoseServiceHelper.shared.postGlucoseJson(_dateFilteredGlucoseList);
+  Future<void> postGlucoseData() async => await GlucoseServiceHelper.shared
+      .postGlucoseJson(_dateFilteredGlucoseList);
 
-  void saveGlucoseData() =>
-      DatabaseHelper.shared.insertAll(_dateFilteredGlucoseList);
+  Future<void> saveGlucoseData() async =>
+      await DatabaseHelper.shared.insertAll(_dateFilteredGlucoseList);
 
   //get the current status of the GlucoseController
   Rx<GlucoseListStatus> get getStatus => _status;
