@@ -6,6 +6,14 @@ import 'package:bloodglucose_monitoring_flutterapp/controller/glucose_controller
 import 'package:bloodglucose_monitoring_flutterapp/view/home/components/parameter_card.dart';
 import 'package:bloodglucose_monitoring_flutterapp/view/home/components/parameter_gesture_card.dart';
 
+/*
+Render 04 cards with glucose parameter: 
+Max: Maximum Glucose value -> This card can be longPressed to show red Triangle on line graph
+Min: Minimum Glucose value -> This card can be longPressed to show green circle on line graph
+Avg: Average Glucose value
+Max: Median Glucose value
+*/
+
 class ParameterContainer extends StatelessWidget {
   final GlucoseController _glucoseController = Get.find();
 
