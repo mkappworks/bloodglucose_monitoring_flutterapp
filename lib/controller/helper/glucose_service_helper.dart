@@ -6,7 +6,7 @@ import 'package:bloodglucose_monitoring_flutterapp/model/blood_glucose_sample.da
 class GlucoseServiceHelper {
   static final shared = GlucoseServiceHelper();
 
-// Fetch the raw blood glucose values from the following URL https://s3-de-central.profitbricks.com/una-health-frontend-tech-challenge/sample.json
+  // Fetch the raw blood glucose values from the following URL https://s3-de-central.profitbricks.com/una-health-frontend-tech-challenge/sample.json
   Future<List<Glucose>> fetchGlucoseList() async {
     try {
       //fetch data from external api
@@ -34,4 +34,22 @@ class GlucoseServiceHelper {
       return <Glucose>[];
     }
   }
+
+  //Post filtered glucose values
+  Future<void> postGlucoseJson(List<Glucose> glucoseList) async {
+    var _jsonBody = bloodGlucoseSampleToJson(
+        BloodGlucoseSample(bloodGlucoseSamples: glucoseList));
+
+    try {
+      http.post(
+        Uri.parse('https://jsonplaceholder.com/'),
+        headers: <String, String>{
+          'Content-Type': 'application/json',
+        },
+        body: _jsonBody,
+      );
+    } catch (error) {
+      print('Post Glucose Json trycatch error $error');
+    }
+  }  
 }
