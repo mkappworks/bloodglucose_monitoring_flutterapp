@@ -4,9 +4,9 @@ A Flutter mobile app which displays blood glucose level over time in a line char
 
 ## App Preview
 
-![BGM 01](https://user-images.githubusercontent.com/76746881/125192895-938e0880-e267-11eb-9b1e-55a77a04878b.png)
+![BMG 1](https://user-images.githubusercontent.com/76746881/125211255-b8639980-e2c2-11eb-964a-1dd890e9ea3f.png)
 
-![BGM 02](https://user-images.githubusercontent.com/76746881/125192885-853fec80-e267-11eb-8e2c-948a6c0ff8a3.png)
+![BGM 2](https://user-images.githubusercontent.com/76746881/125211261-c2859800-e2c2-11eb-81b2-0fa0fd0ec6c0.png)
 
 ## Getting Started
 
