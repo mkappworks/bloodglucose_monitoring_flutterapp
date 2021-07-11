@@ -25,9 +25,16 @@ class GlucoseController extends GetxController {
   RxBool _isMaximumGlucoseValueHover = false.obs;
   RxBool _isMinimumGlucoseValueHover = false.obs;
 
+  @override
   Future<void> onInit() async {
     super.onInit();
     await _setGlucoseList();
+  }
+
+  @override
+  void dispose() async {
+    await DatabaseHelper.shared.close();
+    super.dispose();
   }
 
   //Function to get and set all raw glucose data external api
