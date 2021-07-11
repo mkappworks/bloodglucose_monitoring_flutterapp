@@ -46,5 +46,15 @@ The folder structure of this app is explained below:
 
  - More reading on Flutter deep linking visit : https://flutter.dev/docs/development/ui/navigation/deep-linking
 
+ ## App Features
+
+ - Long pressing on the Maximum value highlight the corresponding value in the graph with a red triangle
+
+ - Long pressing on the Minimum value highlight the corresponding value in the graph with a green circle
+
+ - Tap on the Pick Start Date or Pick End Date to filter the data in the line graph
+
+ - Tap on the Save Data button to save the data displayed in line graph to a local sqflite database
+
 ## App Preview
 
