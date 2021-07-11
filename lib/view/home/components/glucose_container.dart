@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:bloodglucose_monitoring_flutterapp/utils/sized_box_functions.dart';
 
 import 'package:bloodglucose_monitoring_flutterapp/view/home/components/glucose_line_chart.dart';
-import 'package:bloodglucose_monitoring_flutterapp/view/home/components/export_button.dart';
+import 'package:bloodglucose_monitoring_flutterapp/view/home/components/save_button.dart';
 import 'package:bloodglucose_monitoring_flutterapp/view/home/components/parameter_container.dart';
 import 'package:bloodglucose_monitoring_flutterapp/view/home/components/date_picker_container.dart';
 
@@ -29,7 +29,7 @@ class GlucoseContainer extends StatelessWidget {
           addVerticalSpace(10.0 * scaleHeigth),
           ParameterContainer(),
           addVerticalSpace(30.0 * scaleHeigth),
-          ExportButton(),
+          SaveButton(),
         ],
       ),
     );
