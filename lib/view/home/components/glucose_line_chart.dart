@@ -23,12 +23,24 @@ class GlucoseLineChart extends StatelessWidget {
         height: 500.0 * scaleHeigth,
         child: SfCartesianChart(
           // Initialize X axis
-          primaryXAxis: DateTimeCategoryAxis(
+          primaryXAxis: DateTimeAxis(
             title: AxisTitle(
                 text: 'Time', textStyle: TextStyle(fontSize: 14 * scaleWidth)),
-            edgeLabelPlacement: EdgeLabelPlacement.shift,
             minimum: _glucoseController.getFilteredStartDate[0],
             maximum: _glucoseController.getFilteredEndDate[0],
+            interval: 1.0,
+            intervalType: _glucoseController.getFilteredEndDate[0]
+                        .difference(_glucoseController.getFilteredStartDate[0])
+                        .inDays >
+                    60
+                ? DateTimeIntervalType.months
+                : _glucoseController.getFilteredEndDate[0]
+                            .difference(
+                                _glucoseController.getFilteredStartDate[0])
+                            .inDays >
+                        0
+                    ? DateTimeIntervalType.days
+                    : DateTimeIntervalType.hours,
           ),
           // Initialize Y axis
           primaryYAxis: NumericAxis(
