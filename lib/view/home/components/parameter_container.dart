@@ -1,10 +1,7 @@
-import 'package:bloodglucose_monitoring_flutterapp/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:bloodglucose_monitoring_flutterapp/controller/glucose_controller.dart';
-
-import 'package:bloodglucose_monitoring_flutterapp/utils/sized_box_functions.dart';
 
 import 'package:bloodglucose_monitoring_flutterapp/view/home/components/parameter_card.dart';
 import 'package:bloodglucose_monitoring_flutterapp/view/home/components/parameter_gesture_card.dart';
