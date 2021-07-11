@@ -27,7 +27,6 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final GlucoseController _glucoseController = Get.find();
-  // late Uri? appLink;
 
   @override
   void initState() {
