@@ -15,7 +15,7 @@ class HomeBody extends StatelessWidget {
       child: Obx(() {
         switch (_glucoseController.getStatus.value) {
           case GlucoseListStatus.empty:
-            return Text("Empty");
+            return Text('Empty');
           case GlucoseListStatus.loaded:
             return GlucoseContainer();
           case GlucoseListStatus.loading:
