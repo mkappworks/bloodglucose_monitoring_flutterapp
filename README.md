@@ -1,7 +1,12 @@
-![BGM 01](https://user-images.githubusercontent.com/76746881/125192871-7f4a0b80-e267-11eb-98d9-79c78079b223.png)
 # Blood Glucose Monitoring App
 
 A Flutter mobile app which displays blood glucose level over time in a line chart which are retrieved from a external api.
+
+## App Preview
+
+![BGM 01](https://user-images.githubusercontent.com/76746881/125192895-938e0880-e267-11eb-9b1e-55a77a04878b.png)
+
+![BGM 02](https://user-images.githubusercontent.com/76746881/125192885-853fec80-e267-11eb-8e2c-948a6c0ff8a3.png)
 
 ## Getting Started
 
@@ -56,12 +61,3 @@ The folder structure of this app is explained below:
  - Tap on the Pick Start Date or Pick End Date to filter the data in the line graph
 
  - Tap on the Save Data button to save the data displayed in line graph to a local sqflite database
-
-## App Preview
-
-![BGM 01](https://user-images.githubusercontent.com/76746881/125192895-938e0880-e267-11eb-9b1e-55a77a04878b.png)
-
-![BGM 02](https://user-images.githubusercontent.com/76746881/125192885-853fec80-e267-11eb-8e2c-948a6c0ff8a3.png)
-
-
-
