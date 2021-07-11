@@ -1,9 +1,11 @@
 class Glucose {
+  final int? id;
   final double value;
   final DateTime timestamp;
   final String unit;
 
   Glucose({
+    this.id,
     required this.value,
     required this.timestamp,
     required this.unit,
@@ -16,6 +18,7 @@ class Glucose {
       );
 
   Map<String, dynamic> toJson() => {
+        "_id": id,
         "value": value,
         "timestamp": timestamp.toIso8601String(),
         "unit": unit,
