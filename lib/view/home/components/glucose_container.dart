@@ -18,6 +18,7 @@ class GlucoseContainer extends StatelessWidget {
     final scaleWidth = width / kMockupWidth;
 
     return Padding(
+      key: Key("glucoseContainer"),
       padding: EdgeInsets.symmetric(
           horizontal: 5.0 * scaleWidth, vertical: 5.0 * scaleHeigth),
       child: Column(
