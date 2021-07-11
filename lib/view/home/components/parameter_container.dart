@@ -21,7 +21,7 @@ class ParameterContainer extends StatelessWidget {
       () => Column(
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               ParameterGestureCard(
@@ -29,30 +29,24 @@ class ParameterContainer extends StatelessWidget {
                     _glucoseController.setIsMaximumGlucoseValueHover(),
                 onLongPressEndFn: (details) =>
                     _glucoseController.setIsMaximumGlucoseValueHover(),
-                label:
-                    'Maximum : ${_glucoseController.getMaximumGlucoseValue[0].value}',
+                label: 'Max',
+                value: '${_glucoseController.getMaximumGlucoseValue[0].value}',
               ),
               ParameterGestureCard(
-                  onLongPressFn: () =>
-                      _glucoseController.setIsMinimumGlucoseValueHover(),
-                  onLongPressEndFn: (details) =>
-                      _glucoseController.setIsMinimumGlucoseValueHover(),
-                  label:
-                      'Minimum : ${_glucoseController.getMinimumGlucoseValue[0].value}'),
-            ],
-          ),
-          addVerticalSpace(10.0 * scaleHeigth),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              ParameterCard(
-                label:
-                    'Average : ${_glucoseController.getAverageGlucoseValue[0]}',
+                onLongPressFn: () =>
+                    _glucoseController.setIsMinimumGlucoseValueHover(),
+                onLongPressEndFn: (details) =>
+                    _glucoseController.setIsMinimumGlucoseValueHover(),
+                label: 'Min',
+                value: '${_glucoseController.getMinimumGlucoseValue[0].value}',
               ),
               ParameterCard(
-                label:
-                    'Median : ${_glucoseController.getMedianGlucoseValue[0]}',
+                label: 'Avg',
+                value: '${_glucoseController.getAverageGlucoseValue[0]}',
+              ),
+              ParameterCard(
+                label: 'Med',
+                value: '${_glucoseController.getMedianGlucoseValue[0]}',
               ),
             ],
           ),

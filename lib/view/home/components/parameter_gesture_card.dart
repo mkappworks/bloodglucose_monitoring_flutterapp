@@ -6,11 +6,13 @@ class ParameterGestureCard extends StatelessWidget {
   final Function onLongPressFn;
   final Function(LongPressEndDetails details) onLongPressEndFn;
   final String label;
+  final String value;
 
   ParameterGestureCard({
     required this.onLongPressFn,
     required this.onLongPressEndFn,
     required this.label,
+    required this.value,
   });
 
   @override
@@ -18,7 +20,10 @@ class ParameterGestureCard extends StatelessWidget {
     return GestureDetector(
       onLongPress: onLongPressFn as VoidCallback,
       onLongPressEnd: onLongPressEndFn,
-      child: ParameterCard(label: label),
+      child: ParameterCard(
+        label: label,
+        value: value,
+      ),
     );
   }
 }
