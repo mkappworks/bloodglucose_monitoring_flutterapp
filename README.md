@@ -18,8 +18,8 @@ Make sure flutter is installed : https://flutter.dev/docs/get-started/install
 
 ## Simple build for production
 
-  For Android :  https://flutter.dev/docs/deployment/android
-  For iOS     :  https://flutter.dev/docs/deployment/ios
+  - For Android :  https://flutter.dev/docs/deployment/android
+  - For iOS     :  https://flutter.dev/docs/deployment/ios
 
 ## Project Structure
 
