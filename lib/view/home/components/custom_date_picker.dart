@@ -1,6 +1,7 @@
-import 'package:bloodglucose_monitoring_flutterapp/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+
+import 'package:bloodglucose_monitoring_flutterapp/utils/constants.dart';
 
 import 'package:bloodglucose_monitoring_flutterapp/view/home/components/custom_text_icon_button.dart';
 
@@ -17,6 +18,9 @@ class CustomDatePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final scaleWidth = width / kMockupWidth;
+
     return CustomTextIconButton(
       onPressed: () {
         DatePicker.showDatePicker(
@@ -31,11 +35,17 @@ class CustomDatePicker extends StatelessWidget {
             headerColor: kDatePickerColor,
             backgroundColor: kDatePickerColor,
             itemStyle: TextStyle(
-                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 18 * scaleWidth),
             cancelStyle: TextStyle(
-                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 16 * scaleWidth),
             doneStyle: TextStyle(
-                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 16 * scaleWidth),
           ),
         );
       },

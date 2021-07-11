@@ -17,6 +17,10 @@ class CustomTextIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
+    final scaleHeigth = height / kMockupHeight;
+    final scaleWidth = width / kMockupWidth;
     return TextButton.icon(
       onPressed: onPressed as VoidCallback,
       icon: Icon(
@@ -25,13 +29,14 @@ class CustomTextIconButton extends StatelessWidget {
       ),
       style: TextButton.styleFrom(
         backgroundColor: kPrimaryColor.withOpacity(0.6),
-        minimumSize: Size(150 * scale, 50),
+        minimumSize: Size(150 * scale * scaleWidth, 50 * scaleHeigth),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(8.0)),
         ),
       ),
       label: Text(
         label,
+        textScaleFactor: scaleWidth,
         style: Theme.of(context).textTheme.headline4?.copyWith(
               fontWeight: FontWeight.w500,
               color: Colors.white,

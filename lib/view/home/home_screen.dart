@@ -9,11 +9,17 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final scaleWidth = width / kMockupWidth;
+
     return Scaffold(
       backgroundColor: kBackgroundColor,
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Blood Glucose Monitoring App'),
+        title: Text(
+          'Blood Glucose Monitoring App',
+          textScaleFactor: scaleWidth,
+        ),
         flexibleSpace: Container(
           decoration: BoxDecoration(gradient: kAppBarDecoration),
         ),
