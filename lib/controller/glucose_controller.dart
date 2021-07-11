@@ -1,3 +1,4 @@
+import 'package:bloodglucose_monitoring_flutterapp/db/database_helper.dart';
 import 'package:get/get.dart';
 
 import 'package:bloodglucose_monitoring_flutterapp/controller/helper/glucose_service_helper.dart';
@@ -137,6 +138,12 @@ class GlucoseController extends GetxController {
 
     update();
   }
+
+  void postGlucoseData() =>
+      GlucoseServiceHelper.shared.postGlucoseJson(_dateFilteredGlucoseList);
+
+  void saveGlucoseData() =>
+      DatabaseHelper.shared.insertAll(_dateFilteredGlucoseList);
 
   //get the current status of the GlucoseController
   Rx<GlucoseListStatus> get getStatus => _status;
