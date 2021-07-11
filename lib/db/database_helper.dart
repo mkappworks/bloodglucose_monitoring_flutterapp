@@ -1,6 +1,5 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
-import 'dart:convert';
 
 import 'package:bloodglucose_monitoring_flutterapp/model/glucose.dart';
 
