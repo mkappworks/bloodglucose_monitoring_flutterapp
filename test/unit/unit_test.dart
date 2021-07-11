@@ -4,20 +4,8 @@ import 'package:mockito/mockito.dart';
 
 import 'package:bloodglucose_monitoring_flutterapp/controller/helper/glucose_service_helper.dart';
 
-import 'package:bloodglucose_monitoring_flutterapp/model/glucose.dart';
-
+import '../mock/mock_data.dart';
 import 'unit_test.mocks.dart';
-
-List<Glucose> response = [
-  Glucose(
-      value: 2.5,
-      timestamp: DateTime.parse("2021-02-10T10:25:00"),
-      unit: "mmol/L"),
-  Glucose(
-      value: 3.5,
-      timestamp: DateTime.parse("2021-02-10T11:25:00"),
-      unit: "mmol/L")
-];
 
 @GenerateMocks([GlucoseServiceHelper])
 void main() {
@@ -26,7 +14,7 @@ void main() {
       (WidgetTester tester) async {
     final client = MockGlucoseServiceHelper();
 
-    var futureResponseData = Future.value(response);
+    var futureResponseData = Future.value(loadedResponse);
 
     when(client.fetchGlucoseList())
         .thenAnswer((realInvocation) => futureResponseData);
@@ -39,7 +27,7 @@ void main() {
       (WidgetTester tester) async {
     final client = MockGlucoseServiceHelper();
 
-    var futureResponseData = Future.value(<Glucose>[]);
+    var futureResponseData = Future.value(emptyResponse);
 
     when(client.fetchGlucoseList())
         .thenAnswer((realInvocation) => futureResponseData);
