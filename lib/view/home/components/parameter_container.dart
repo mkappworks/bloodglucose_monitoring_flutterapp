@@ -1,3 +1,4 @@
+import 'package:bloodglucose_monitoring_flutterapp/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,6 +14,9 @@ class ParameterContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final scaleHeigth = height / kMockupHeight;
+
     return Obx(
       () => Column(
         children: [
@@ -37,7 +41,7 @@ class ParameterContainer extends StatelessWidget {
                       'Minimum : ${_glucoseController.getMinimumGlucoseValue[0].value}'),
             ],
           ),
-          addVerticalSpace(10.0),
+          addVerticalSpace(10.0 * scaleHeigth),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.center,

@@ -10,23 +10,20 @@ class HomeBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(5.0),
-      child: Center(
-        //depending on the status of the GlucoseController, respective widgets are rendered
-        child: Obx(() {
-          switch (_glucoseController.getStatus.value) {
-            case GlucoseListStatus.empty:
-              return Text("Empty");
-            case GlucoseListStatus.loaded:
-              return GlucoseContainer();
-            case GlucoseListStatus.loading:
-              return CircularProgressIndicator();
-            default:
-              return Container();
-          }
-        }),
-      ),
+    return Center(
+      //depending on the status of the GlucoseController, respective widgets are rendered
+      child: Obx(() {
+        switch (_glucoseController.getStatus.value) {
+          case GlucoseListStatus.empty:
+            return Text("Empty");
+          case GlucoseListStatus.loaded:
+            return GlucoseContainer();
+          case GlucoseListStatus.loading:
+            return CircularProgressIndicator();
+          default:
+            return Container();
+        }
+      }),
     );
   }
 }

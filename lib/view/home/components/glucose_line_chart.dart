@@ -1,28 +1,40 @@
-import 'package:bloodglucose_monitoring_flutterapp/controller/glucose_controller.dart';
-import 'package:bloodglucose_monitoring_flutterapp/model/glucose.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+
+import 'package:bloodglucose_monitoring_flutterapp/controller/glucose_controller.dart';
+
+import 'package:bloodglucose_monitoring_flutterapp/model/glucose.dart';
+
+import 'package:bloodglucose_monitoring_flutterapp/utils/constants.dart';
 
 class GlucoseLineChart extends StatelessWidget {
   final GlucoseController _glucoseController = Get.find();
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
+    final scaleHeigth = height / kMockupHeight;
+    final scaleWidth = width / kMockupWidth;
+
     return Obx(
       () => Container(
-        height: 500.0,
+        height: 500.0 * scaleHeigth,
         child: SfCartesianChart(
           // Initialize X axis
           primaryXAxis: DateTimeCategoryAxis(
-            title: AxisTitle(text: 'Time'),
+            title: AxisTitle(
+                text: 'Time', textStyle: TextStyle(fontSize: 14 * scaleWidth)),
             edgeLabelPlacement: EdgeLabelPlacement.shift,
             minimum: _glucoseController.getFilteredStartDate[0],
             maximum: _glucoseController.getFilteredEndDate[0],
           ),
           // Initialize Y axis
           primaryYAxis: NumericAxis(
-            title: AxisTitle(text: 'Blood Glucose Level/mmol/L'),
+            title: AxisTitle(
+                text: 'Blood Glucose Level/mmol/L',
+                textStyle: TextStyle(fontSize: 14 * scaleWidth)),
             edgeLabelPlacement: EdgeLabelPlacement.shift,
             minimum: _glucoseController.getMinimumGlucoseValue[0].value - 1,
             maximum: _glucoseController.getMaximumGlucoseValue[0].value + 1,
