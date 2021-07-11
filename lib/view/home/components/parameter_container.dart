@@ -14,9 +14,6 @@ class ParameterContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    final scaleHeigth = height / kMockupHeight;
-
     return Obx(
       () => Column(
         children: [
