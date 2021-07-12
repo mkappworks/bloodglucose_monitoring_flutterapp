@@ -54,8 +54,9 @@ class _MyAppState extends State<MyApp> {
       if (_glucoseController.getStatus.value == GlucoseListStatus.loaded) {
         _glucoseController
             .setFilteredStartDate(DateTime.parse(_startEndDateTime[0]));
-        _glucoseController
-            .setFilteredEndDate(DateTime.parse(_startEndDateTime[1]));
+        _glucoseController.setFilteredEndDate(
+            DateTime.parse(_startEndDateTime[1]).add(Duration(
+                hours: 23, minutes: 59, seconds: 59, milliseconds: 999)));
         print(_startEndDateTime);
       }
     }
