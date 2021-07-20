@@ -3,12 +3,11 @@ import 'package:get/get.dart';
 
 import 'package:bloodglucose_monitoring_flutterapp/controller/helper/glucose_service_helper.dart';
 import 'package:bloodglucose_monitoring_flutterapp/controller/helper/glucose_utils_helper.dart';
+import 'package:bloodglucose_monitoring_flutterapp/controller/glucose_interface.dart';
 
 import 'package:bloodglucose_monitoring_flutterapp/model/glucose.dart';
 
-enum GlucoseListStatus { loading, loaded, empty }
-
-class GlucoseController extends GetxController {
+class GlucoseController extends GetxController implements GlucoseInterface {
   Rx<GlucoseListStatus> _status = GlucoseListStatus.loading.obs;
   RxList<Glucose> _apiGlucoseList = <Glucose>[].obs;
 
@@ -28,7 +27,7 @@ class GlucoseController extends GetxController {
   @override
   Future<void> onInit() async {
     super.onInit();
-    await _setGlucoseList();
+    await setGlucoseList();
   }
 
   @override
@@ -38,7 +37,8 @@ class GlucoseController extends GetxController {
   }
 
   //Function to get and set all raw glucose data external api
-  Future<void> _setGlucoseList() async {
+  @override
+  Future<void> setGlucoseList() async {
     _status.value = GlucoseListStatus.loading;
 
     _apiGlucoseList
@@ -47,14 +47,15 @@ class GlucoseController extends GetxController {
     if (_apiGlucoseList.isEmpty) {
       _status.value = GlucoseListStatus.empty;
     } else {
-      _setApiStartEndDate(_apiGlucoseList);
+      setApiStartEndDate(_apiGlucoseList);
       _status.value = GlucoseListStatus.loaded;
     }
 
     update();
   }
 
-  void _setApiStartEndDate(List<Glucose> currentList) {
+  @override
+  void setApiStartEndDate(List<Glucose> currentList) {
     //get the start date of _glucoseList
     setFilteredStartDate(GlucoseUtilsHelper.shared
         .getGlucoseListStartDate(currentList)
@@ -65,6 +66,7 @@ class GlucoseController extends GetxController {
         GlucoseUtilsHelper.shared.getGlucoseListEndDate(currentList).timestamp);
   }
 
+  @override
   void setFilteredStartDate(DateTime startDate) {
     //check whether the _filteredStartDate list is empty.
     //if empty assign startDate (this only happens when the app is loading for the first time)
@@ -76,11 +78,12 @@ class GlucoseController extends GetxController {
       _filteredStartDate.assign(startDate);
 
     //if _filteredEndDate is not empty the _setDateFilteredGlucoseList fn is called
-    if (_filteredEndDate.length != 0) _setDateFilteredGlucoseList();
+    if (_filteredEndDate.length != 0) setDateFilteredGlucoseList();
 
     update();
   }
 
+  @override
   void setFilteredEndDate(DateTime endDate) {
     //check whether the _filteredEndDate list is empty.
     //if empty assign endDate (this only happens when the app is loading for the first time)
@@ -92,12 +95,13 @@ class GlucoseController extends GetxController {
       _filteredEndDate.assign(endDate);
 
     //if _filteredStartDate is not empty the _setDateFilteredGlucoseList fn is called
-    if (_filteredStartDate.length != 0) _setDateFilteredGlucoseList();
+    if (_filteredStartDate.length != 0) setDateFilteredGlucoseList();
 
     update();
   }
 
-  void _setDateFilteredGlucoseList() {
+  @override
+  void setDateFilteredGlucoseList() {
     _dateFilteredGlucoseList.assignAll(
       GlucoseUtilsHelper.shared.getDateFilteredGlucoseList(
         apiGlucoseList: _apiGlucoseList,
@@ -106,13 +110,14 @@ class GlucoseController extends GetxController {
       ),
     );
 
-    _setGlucoseParameters(_dateFilteredGlucoseList);
+    setGlucoseParameters(_dateFilteredGlucoseList);
 
     update();
   }
 
   //Function to calculate and set all max, min, average and median glucose value from _glucoseList
-  void _setGlucoseParameters(List<Glucose> currentList) {
+  @override
+  void setGlucoseParameters(List<Glucose> currentList) {
     //get the maximum glucose value
     _maximumGlucoseValue
         .assign(GlucoseUtilsHelper.shared.getMaximumGlucoseValue(currentList));
@@ -133,6 +138,7 @@ class GlucoseController extends GetxController {
   }
 
   //Function to set whether the Maximum Glucose Value is being long pressed
+  @override
   void setIsMaximumGlucoseValueHover() {
     _isMaximumGlucoseValueHover.value = !_isMaximumGlucoseValueHover.value;
 
@@ -140,40 +146,58 @@ class GlucoseController extends GetxController {
   }
 
   //Function to set whether the Minimum Glucose Value is being long pressed
+  @override
   void setIsMinimumGlucoseValueHover() {
     _isMinimumGlucoseValueHover.value = !_isMinimumGlucoseValueHover.value;
 
     update();
   }
 
+  @override
   Future<void> postGlucoseData() async => await GlucoseServiceHelper.shared
       .postGlucoseJson(_dateFilteredGlucoseList);
 
+  @override
   Future<void> saveGlucoseData() async =>
       await DatabaseHelper.shared.insertAll(_dateFilteredGlucoseList);
 
   //get the current status of the GlucoseController
+  @override
   Rx<GlucoseListStatus> get getStatus => _status;
 
   //get the startDate
+  @override
   RxList<DateTime> get getFilteredStartDate => _filteredStartDate;
+
   //get the endDate
+  @override
   RxList<DateTime> get getFilteredEndDate => _filteredEndDate;
 
   //get the date filtered _glucoseList
+  @override
   RxList<Glucose> get getDateFilteredGlucoseList => _dateFilteredGlucoseList;
 
   //get the _minimumGlucoseValue
+  @override
   RxList<Glucose> get getMinimumGlucoseValue => _minimumGlucoseValue;
+
   //get the _maximumGlucoseValue
+  @override
   RxList<Glucose> get getMaximumGlucoseValue => _maximumGlucoseValue;
+
   //get the _averageGlucoseValue
+  @override
   RxList<double> get getAverageGlucoseValue => _averageGlucoseValue;
+
   //get the _medianGlucoseValue
+  @override
   RxList<double> get getMedianGlucoseValue => _medianGlucoseValue;
 
   //get the _isMaximumGlucoseValueHover
+  @override
   RxBool get getIsMaximumGlucoseValueHover => _isMaximumGlucoseValueHover;
+
   //get the _isMinimumGlucoseValueHover
+  @override
   RxBool get getIsMinimumGlucoseValueHover => _isMinimumGlucoseValueHover;
 }
