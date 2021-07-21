@@ -13,6 +13,7 @@ class HomeScreen extends StatelessWidget {
     final scaleWidth = width / kMockupWidth;
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: kBackgroundColor,
       appBar: AppBar(
         centerTitle: true,
