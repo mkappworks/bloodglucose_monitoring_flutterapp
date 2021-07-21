@@ -70,4 +70,18 @@ class GlucoseUtilsHelper {
             element.timestamp.compareTo(startDate) >= 0)
         .toList();
   }
+
+  //return percentage of which the glucose list values are below the threshold input by user
+  double getThresholdPercentage(
+      List<Glucose> dateFilteredGlucoseList, double threshold) {
+        
+    List _thresholdGlucoseList = dateFilteredGlucoseList
+        .where((item) => item.value < threshold)
+        .toList();
+
+    int _thresholdGlucoseListCount = _thresholdGlucoseList.length;
+    int _dateFilteredGlucoseListCount = dateFilteredGlucoseList.length;
+
+    return _thresholdGlucoseListCount * 100 / _dateFilteredGlucoseListCount;
+  }
 }

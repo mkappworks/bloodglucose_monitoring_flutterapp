@@ -179,17 +179,9 @@ class GlucoseController extends GetxController implements GlucoseInterface {
   //Function to get the threshold percentage and set to _thresholdPercentage
   @override
   void setThresholdPercentage() {
-    List _thresholdGlucoseList = _dateFilteredGlucoseList
-        .where((item) => item.value < _threshold[0])
-        .toList();
-
-    int _thresholdGlucoseListCount = _thresholdGlucoseList.length;
-    int _dateFilteredGlucoseListCount = _dateFilteredGlucoseList.length;
-
-    double percentage =
-        _thresholdGlucoseListCount * 100 / _dateFilteredGlucoseListCount;
-
-    _thresholdPercentage.assign(percentage.toPrecision(1));
+    _thresholdPercentage.assign(GlucoseUtilsHelper.shared
+        .getThresholdPercentage(_dateFilteredGlucoseList, _threshold[0])
+        .toPrecision(1));
 
     update();
   }
