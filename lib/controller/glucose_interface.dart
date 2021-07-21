@@ -24,6 +24,10 @@ abstract class GlucoseInterface {
 
   Future<void> saveGlucoseData();
 
+  void setThreshold(double threshold);
+
+  void setThresholdPercentage();
+
   Rx<GlucoseListStatus> get getStatus;
 
   RxList<DateTime> get getFilteredStartDate;
@@ -43,4 +47,6 @@ abstract class GlucoseInterface {
   RxBool get getIsMaximumGlucoseValueHover;
 
   RxBool get getIsMinimumGlucoseValueHover;
+
+  RxList<double> get getThresholdPercentage;
 }
