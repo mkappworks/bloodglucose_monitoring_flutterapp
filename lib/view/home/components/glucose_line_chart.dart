@@ -20,7 +20,7 @@ class GlucoseLineChart extends StatelessWidget {
 
     return Obx(
       () => Container(
-        height: 500.0 * scaleHeigth,
+        height: 475.0 * scaleHeigth,
         child: SfCartesianChart(
           // Initialize X axis
           primaryXAxis: DateTimeAxis(
