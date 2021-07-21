@@ -6,6 +6,7 @@ import 'package:bloodglucose_monitoring_flutterapp/view/home/components/glucose_
 import 'package:bloodglucose_monitoring_flutterapp/view/home/components/save_button.dart';
 import 'package:bloodglucose_monitoring_flutterapp/view/home/components/parameter_container.dart';
 import 'package:bloodglucose_monitoring_flutterapp/view/home/components/date_picker_container.dart';
+import 'package:bloodglucose_monitoring_flutterapp/view/home/components/set_threshold_button.dart';
 
 import 'package:bloodglucose_monitoring_flutterapp/utils/constants.dart';
 
@@ -20,7 +21,9 @@ class GlucoseContainer extends StatelessWidget {
     return Padding(
       key: Key("glucoseContainer"),
       padding: EdgeInsets.symmetric(
-          horizontal: 5.0 * scaleWidth, vertical: 5.0 * scaleHeigth),
+        horizontal: 5.0 * scaleWidth,
+        vertical: 5.0 * scaleHeigth,
+      ),
       child: Column(
         children: [
           addVerticalSpace(10.0 * scaleHeigth),
@@ -29,7 +32,9 @@ class GlucoseContainer extends StatelessWidget {
           GlucoseLineChart(),
           addVerticalSpace(10.0 * scaleHeigth),
           ParameterContainer(),
-          addVerticalSpace(30.0 * scaleHeigth),
+          addVerticalSpace(10.0 * scaleHeigth),
+          SetThresholdButton(),
+          addVerticalSpace(10.0 * scaleHeigth),
           SaveButton(),
         ],
       ),

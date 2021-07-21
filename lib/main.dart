@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:app_links/app_links.dart';
 
 import 'package:bloodglucose_monitoring_flutterapp/controller/glucose_controller.dart';
+import 'package:bloodglucose_monitoring_flutterapp/controller/glucose_interface.dart';
 
 import 'package:bloodglucose_monitoring_flutterapp/utils/constants.dart';
 import 'package:bloodglucose_monitoring_flutterapp/utils/routes.dart';
